@@ -1,18 +1,26 @@
 print('== SISTEMA CLÍNICA VIDA+ ==')
 
+import time
+
 qtd_cadastros = 0
 idades = []
 pacientes = []
 
 while True:
     print("\nInforme a opção desejada:")
-    print('\n1.Cadastrar paciente\n'
-          '2.Ver estatística\n'
-          '3.Buscar paciente\n'
-          '4.Listar todos os pacientes\n'
-          '5.Sair')
+    print('\n1.Cadastrar paciente'
+          '\n2.Ver estatística'
+          '\n3.Buscar paciente'
+          '\n4.Listar todos os pacientes'
+          '\n5.Sair')
 
-    escolha = int(input('Escolha uma opção:'))
+    try:
+        escolha = int(input('\nEscolha uma opção:'))
+    except(ValueError):
+        print("Digite um valor válido.")
+
+        # Pequena pausa entre as telas
+        time.sleep(0.6)
 
     if escolha==1:
         qtd_cadastros += 1
@@ -49,7 +57,7 @@ while True:
             encontrado = False
 
             for p in pacientes:
-                if p["nome"].lower() == busca_paciente.lower():
+                if p["nome"].strip().lower() == busca_paciente.strip().lower():
                     print(f"Paciente encontrado: \n"f"{p['nome']} \n{p['idade']} anos \n{p['telefone']}")
                     encontrado = True
 
@@ -62,5 +70,7 @@ while True:
 
 
     if escolha == 5:
+        # Pequena pausa para encerramento
+        time.sleep(0.6)
         print('\nPrograma encerrado!')
         break
